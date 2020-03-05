@@ -2,20 +2,27 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_gitreader/config/config.dart';
+import 'package:provider/provider.dart';
 
-class LoadingPage extends StatefulWidget{
+import 'provider/user_model.dart';
+
+class LoadingPage extends StatefulWidget {
   @override
   _LoadingPageState createState() => _LoadingPageState();
 }
 
-class _LoadingPageState extends State<LoadingPage>{
-  
+class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
     Config.init();
-    Future.delayed(Duration(seconds:3),(){
-      Navigator.of(context).pushReplacementNamed("login");
+    Future.delayed(Duration(seconds: 3), () {
+      UserModel userModel = Provider.of<UserModel>(context,listen: false);
+      if (userModel.isLogin) {
+        Navigator.of(context).pushReplacementNamed("home");
+      } else {
+        Navigator.of(context).pushReplacementNamed("login");
+      }
     });
   }
 
@@ -24,10 +31,11 @@ class _LoadingPageState extends State<LoadingPage>{
     return Center(
       child: Stack(
         children: <Widget>[
-          Image.network('http://n.sinaimg.cn/sports/2_img/upload/cf0d0fdd/107/w1024h683/20181128/pKtl-hphsupx4744393.jpg')
+          Image.network(
+              'http://n.sinaimg.cn/sports/2_img/upload/cf0d0fdd/107/w1024h683/20181128/pKtl-hphsupx4744393.jpg')
           // Image.asset('images/loading.jpg',fit: BoxFit.fill,)
         ],
-      ),);
+      ),
+    );
   }
-
 }
