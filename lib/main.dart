@@ -3,6 +3,7 @@ import 'package:flutter_gitreader/loading.dart';
 import 'package:provider/provider.dart';
 import 'page/home_page.dart';
 import 'page/login_page.dart';
+import 'provider/repos_model.dart';
 import 'provider/theme_model.dart';
 import 'provider/user_model.dart';
 
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: UserModel()),
-        ChangeNotifierProvider.value(value: ThemeModel())
+        ChangeNotifierProvider.value(value: ThemeModel()),
+        ChangeNotifierProvider.value(value: ReposModel())
       ],
       child: Consumer<ThemeModel>(
         builder: (BuildContext context,themeMode,Widget chile){

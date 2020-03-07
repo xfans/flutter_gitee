@@ -233,6 +233,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
+  infinite_listview:
+    dependency: "direct main"
+    description:
+      name: infinite_listview
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1+1"
   io:
     dependency: transitive
     description:
