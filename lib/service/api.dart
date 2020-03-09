@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class Api {
   Api();
   String base = "https://gitee.com/api";
-  String token = "ac70d0529882dcd67b57adcaae8ac08b";
+  String token = "da3f824bebd8fd0c2f1dcbb1e23bd19f";
   Future<User> getUser() async {
     try {
       var response = await http

@@ -16,49 +16,83 @@ class HomePageState extends State<HomePage> {
   final InfiniteScrollController _infiniteController = InfiniteScrollController(
     initialScrollOffset: 0.0,
   );
-  List<Repo> list = [];
+  var _futureList;
+  var _title = "Git阅读器";
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _retrieveData();
-    });
+    _futureList = Api().getRepo();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Git阅读器")),
+      appBar: AppBar(title: Text(_title)),
       body: _buildBody(),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+              setState(() {
+                _title += "-";
+              });
+            },
+            child: Text("BTN"),),
     );
-  }
-
-  _retrieveData() async {
-    list = await Api().getRepo();
-    Provider.of<ReposModel>(context,listen: false).repos = list;
   }
 
   _buildBody() {
-    return Consumer<ReposModel>(
-      builder: (BuildContext context, ReposModel value, Widget child) {
-        return ListView.separated(
-            key: PageStorageKey(0),
-            itemCount: value.repos.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Material(
-                child: InkWell(
-                  onTap: () {},
-                  child: ListTile(
-                    title: Text(list[index].name),
-                    subtitle: Text(list[index].path),
-                    trailing: const Icon(Icons.chevron_right),
-                  ),
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(height: 2.0));
-      },
-    );
+    return FutureBuilder<List<Repo>>(
+        future: _futureList,
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              print('waiting');
+              return Center(child: Text("loading"));
+            case ConnectionState.done:
+              print('done');
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text('网络请求出错'),
+                );
+              } else if(snapshot.hasData){
+                return BuildListView(list: snapshot.data);
+              }else{
+                return Center(
+                  child: Text('网络请求出错'),
+                );
+              }
+          }
+          return null;
+        });
+  }
+}
+
+class BuildListView extends StatelessWidget {
+  const BuildListView({
+    Key key,
+    @required this.list,
+  }) : super(key: key);
+
+  final List<Repo> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+        key: PageStorageKey(0),
+        itemCount: list.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Material(
+            child: InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(list[index].name),
+                subtitle: Text(list[index].path),
+                trailing: const Icon(Icons.chevron_right),
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) =>
+            const Divider(height: 2.0));
   }
 }
