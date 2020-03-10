@@ -83,7 +83,9 @@ class BuildListView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Material(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, "detail",arguments: list[index]);
+              },
               child: ListTile(
                 title: Text(list[index].name),
                 subtitle: Text(list[index].path),
