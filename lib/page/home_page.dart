@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gitreader/model/repo.dart';
+import 'package:flutter_gitreader/page/home_drawer.dart';
 import 'package:flutter_gitreader/provider/repos_model.dart';
 import 'package:flutter_gitreader/service/api.dart';
 import 'package:infinite_listview/infinite_listview.dart';
@@ -29,6 +30,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text(_title)),
       body: _buildBody(),
+      drawer: HomeDrawer(),
       floatingActionButton: FloatingActionButton(onPressed: () {
               setState(() {
                 _title += "-";
