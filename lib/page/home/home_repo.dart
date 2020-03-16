@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gitreader/model/repo.dart';
-import 'package:flutter_gitreader/page/home_drawer.dart';
-import 'package:flutter_gitreader/provider/repos_model.dart';
 import 'package:flutter_gitreader/service/api.dart';
 import 'package:infinite_listview/infinite_listview.dart';
-import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomeRepo extends StatefulWidget {
   @override
-  HomePageState createState() {
-    return HomePageState();
+  HomeRepoState createState() {
+    return HomeRepoState();
   }
 }
 
-class HomePageState extends State<HomePage> {
+class HomeRepoState extends State<HomeRepo> {
   final InfiniteScrollController _infiniteController = InfiniteScrollController(
     initialScrollOffset: 0.0,
   );
   var _futureList;
-  var _title = "Git阅读器";
   @override
   void initState() {
     super.initState();
@@ -27,17 +23,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(_title)),
-      body: _buildBody(),
-      drawer: HomeDrawer(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-              setState(() {
-                _title += "-";
-              });
-            },
-            child: Text("BTN"),),
-    );
+    return _buildBody();
   }
 
   _buildBody() {

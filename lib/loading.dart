@@ -19,7 +19,7 @@ class _LoadingPageState extends State<LoadingPage> {
     Future.delayed(Duration(seconds: 3), () {
       UserModel userModel = Provider.of<UserModel>(context,listen: false);
       if (userModel.isLogin) {
-        Navigator.of(context).pushReplacementNamed("home");
+        Navigator.of(context).pushReplacementNamed("home_main");
       } else {
         Navigator.of(context).pushReplacementNamed("login");
       }
