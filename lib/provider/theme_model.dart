@@ -3,12 +3,11 @@ import 'package:flutter_gitreader/config/config.dart';
 import 'package:flutter_gitreader/provider/config_provider.dart';
 
 class ThemeModel extends ConfigChangeNotifier{
-  ColorSwatch get theme => Config.themes
-  .firstWhere((e) => e.value == profile.theme, orElse: () => Colors.blue);
+  Color get theme => Colors.white;
 
-  set theme(ColorSwatch color) {
+  set theme(Color color) {
     if (color != theme) {
-      profile.theme = color[500].value as String;
+      profile.theme = color.toString();
       notifyListeners();
     }
   }

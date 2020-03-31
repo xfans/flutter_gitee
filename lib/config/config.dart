@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_gitreader/style/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../model/profile.dart';
 
-const _themes = <MaterialColor>[
+const _themes = <Color>[
+  Colors.white,
   Colors.blue,
   Colors.cyan,
   Colors.teal,
@@ -14,7 +14,7 @@ const _themes = <MaterialColor>[
 
 class Config{
   static SharedPreferences _sp;
-  static List<MaterialColor> themes = _themes;
+  static List<Color> themes = _themes;
   static Profile profile = new Profile();
 
   static Future init() async{
