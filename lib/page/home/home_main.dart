@@ -62,14 +62,16 @@ class _HomeMainState extends State<HomeMain> {
                   item.title,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )),
-            GestureDetector(
+            InkWell(
               child: Container(
                   margin: EdgeInsets.only(right: 15, top: 8, bottom: 8),
                   child: Text(
                     item.rightText,
                     style: TextStyle(fontSize: 16, color: Colors.blue),
                   )),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed("favorites");
+              },
             )
           ],
         ),

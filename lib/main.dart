@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gitee/loading.dart';
 import 'package:flutter_gitee/page/detail_page.dart';
 import 'package:provider/provider.dart';
+import 'page/favorites/favorites_page.dart';
 import 'page/login_page.dart';
 import 'page/main/main_main.dart';
 import 'provider/repos_model.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
               "main_main": (context) => MainMain(),
               // "home_local":(context) => HomeLocal(),
               // "home_start":(context) => HomeStart(),
-              "detail": (context) => DetailPage()
+              "detail": (context) => DetailPage(),
+              "favorites": (context) => FavoritesPage()
             });
       }),
     );
