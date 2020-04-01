@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gitreader/provider/user_model.dart';
-import 'package:flutter_gitreader/service/api.dart';
+import 'package:flutter_gitee/provider/user_model.dart';
+import 'package:flutter_gitee/service/api.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {

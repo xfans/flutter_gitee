@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gitreader/model/repo.dart';
+import 'package:flutter_gitee/model/repo.dart';
 
 class DetailPage extends StatelessWidget {
   

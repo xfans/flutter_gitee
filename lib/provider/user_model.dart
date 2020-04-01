@@ -1,5 +1,5 @@
-import 'package:flutter_gitreader/model/user.dart';
-import 'package:flutter_gitreader/provider/config_provider.dart';
+import 'package:flutter_gitee/model/user.dart';
+import 'package:flutter_gitee/provider/config_provider.dart';
 
 class UserModel extends ConfigChangeNotifier {
   User get user => profile.user;

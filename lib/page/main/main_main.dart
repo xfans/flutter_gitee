@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gitreader/page/home/home_main.dart';
-import 'package:flutter_gitreader/page/home/home_repo.dart';
-import 'package:flutter_gitreader/page/home/home_start.dart';
+import 'package:flutter_gitee/page/home/home_main.dart';
+import 'package:flutter_gitee/page/home/home_repo.dart';
+import 'package:flutter_gitee/page/home/home_start.dart';
 
 import 'main_navigation.dart';
 

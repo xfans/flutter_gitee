@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gitreader/model/repo.dart';
-import 'package:flutter_gitreader/service/api.dart';
+import 'package:flutter_gitee/model/repo.dart';
+import 'package:flutter_gitee/service/api.dart';
 import 'package:infinite_listview/infinite_listview.dart';
 
 class HomeRepo extends StatefulWidget {

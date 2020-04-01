@@ -1,4 +1,4 @@
-import 'package:flutter_gitreader/model/user.dart';
+import 'package:flutter_gitee/model/user.dart';
 import 'package:json_annotation/json_annotation.dart'; 
   
 part 'profile.g.dart';

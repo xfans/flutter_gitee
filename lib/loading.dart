@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter_gitreader/config/config.dart';
+import 'package:flutter_gitee/config/config.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/user_model.dart';

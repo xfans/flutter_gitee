@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_gitreader/model/repo.dart';
-import 'package:flutter_gitreader/model/user.dart';
+import 'package:flutter_gitee/model/repo.dart';
+import 'package:flutter_gitee/model/user.dart';
 import 'package:http/http.dart' as http;
 
 class Api {

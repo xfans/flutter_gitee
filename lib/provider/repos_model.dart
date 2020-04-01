@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_gitreader/model/repo.dart';
+import 'package:flutter_gitee/model/repo.dart';
 
 class ReposModel with ChangeNotifier {
   final List<Repo> _list = [];

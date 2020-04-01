@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gitreader/model/divider_item.dart';
-import 'package:flutter_gitreader/model/feature.dart';
-import 'package:flutter_gitreader/model/title_item.dart';
+import 'package:flutter_gitee/model/divider_item.dart';
+import 'package:flutter_gitee/model/feature.dart';
+import 'package:flutter_gitee/model/title_item.dart';
 
 class HomeMain extends StatefulWidget {
   @override
@@ -20,7 +20,6 @@ class _HomeMainState extends State<HomeMain> {
     _list.add(Feature("images/home_repo.png", "Repositories", ""));
     _list.add(Feature("images/home_org.png", "Organizations", ""));
     _list.add(DividerItem());
-    _list.add(TitleItem("Favorites", "EDIT", ""));
     _list.add(TitleItem("Favorites", "EDIT", ""));
     super.initState();
   }
