@@ -47,7 +47,7 @@ class LoginPageState extends State<LoginPage> {
                     textColor: Colors.white,
                     child: Text("登录"),
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed("home_main");
+                      Navigator.of(context).pushReplacementNamed("main_main");
                     }),
                 MaterialButton(
                     minWidth: 200,

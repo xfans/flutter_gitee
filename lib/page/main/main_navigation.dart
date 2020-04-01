@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeNavigation extends StatefulWidget {
-  HomeNavigation(this.changed);
+class MainNavigation extends StatefulWidget {
+  MainNavigation(this.changed);
   final ValueChanged<int> changed;
 
   @override
-  _HomeNavigationState createState() => _HomeNavigationState();
+  _MainNavigationState createState() => _MainNavigationState();
 }
 
-class _HomeNavigationState extends State<HomeNavigation> {
+class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
   void _handleTap(int index) {
     widget.changed(index);

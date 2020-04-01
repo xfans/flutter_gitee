@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomeLocal extends StatelessWidget {
+class HomeEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:Text("HomeLocal")
-
+      
     );
   }
 }

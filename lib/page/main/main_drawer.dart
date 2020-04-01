@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeDrawer extends StatelessWidget {
-  HomeDrawer(this.changed);
+class MainDrawer extends StatelessWidget {
+  MainDrawer(this.changed);
   final ValueChanged<String> changed;
   void _handleTap(BuildContext context, String name) {
     changed(name);
