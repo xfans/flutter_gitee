@@ -3,6 +3,7 @@ import 'package:flutter_gitee/model/divider_item.dart';
 import 'package:flutter_gitee/model/feature.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/title_item.dart';
+import 'package:flutter_gitee/page/widget/item_repo.dart';
 import 'package:flutter_gitee/provider/favorites_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class _HomeMainState extends State<HomeMain> {
   @override
   void initState() {
     _list = List();
-    
+
     super.initState();
   }
 
@@ -76,30 +77,8 @@ class _HomeMainState extends State<HomeMain> {
         ),
       );
     } else if (item is Repo) {
-      return InkWell(
-        child: Container(
-          padding: EdgeInsets.only(left: 15, right: 15),
-          height: 50,
-          child: Row(children: <Widget>[
-            Image.network(
-              item.owner.avatarUrl,
-              fit: BoxFit.contain,
-              height: 30,
-              width: 30,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Expanded(
-              child: Text(item.humanName.replaceAll("/", " / "),
-                  style: TextStyle(fontSize: 16)),
-            ),
-            
-          ]),
-        ),
-        onTap: () {
-        },
-      );
+      return ItemRepo(
+          item.humanName.replaceAll("/", " / "), item.owner.avatarUrl);
     } else if (item is DividerItem) {
       return Container(
         margin: EdgeInsets.only(top: 10, bottom: 10),

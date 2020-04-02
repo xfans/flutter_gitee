@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gitee/page/widget/include_appbar.dart';
+import 'package:flutter_gitee/page/widget/item_repo.dart';
 import 'package:flutter_gitee/provider/favorites_model.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +28,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: IncludeAppBar(
+        title: "Favorites",
+        rightText: "SAVE",
+      ),
       body: Container(
         child: Column(
           children: <Widget>[_buildSearch(), Expanded(child: _buildBody())],
@@ -75,33 +80,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
       ),
     );
   }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      brightness: Brightness.light,
-      backgroundColor: Colors.white,
-      elevation: 0,
-      title: Text("Favorites"),
-      leading: InkWell(
-        child: Icon(Icons.arrow_back),
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-      ),
-      actions: <Widget>[
-        InkWell(
-          child: Container(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: 15, left: 15),
-              child: Text(
-                "SAVE",
-                style: TextStyle(fontSize: 16, color: Colors.blue),
-              )),
-          onTap: () {},
-        )
-      ],
-    );
-  }
 }
 
 class BuildListView extends StatelessWidget {
@@ -131,32 +109,12 @@ class BuildListView extends StatelessWidget {
   }
 
   Widget _buildItem(BuildContext context, Repo item, Repo lastItem) {
-    Widget content = InkWell(
-      child: Container(
-        padding: EdgeInsets.only(left: 15, right: 15),
-        height: 50,
-        child: Row(children: <Widget>[
-          Image.network(
-            item.owner.avatarUrl,
-            fit: BoxFit.contain,
-            height: 30,
-            width: 30,
-          ),
-          SizedBox(
-            width: 15,
-          ),
-          Expanded(
-            child: Text(item.humanName.replaceAll("/", " / "),
-                style: TextStyle(fontSize: 16)),
-          ),
-          Icon(
-            item.isFavo == true
-                ? Icons.remove_circle_outline
-                : Icons.add_circle_outline,
-            color: Colors.grey,
-          )
-        ]),
-      ),
+    Widget content = ItemRepo(
+      item.humanName.replaceAll("/", " / "),
+      item.owner.avatarUrl,
+      rightIcon: item.isFavo == true
+          ? Icons.remove_circle_outline
+          : Icons.add_circle_outline,
       onTap: () {
         Provider.of<FavoritesModel>(context, listen: false).add(item);
       },
@@ -187,4 +145,14 @@ class BuildListView extends StatelessWidget {
       return content;
     }
   }
+}
+
+class MyToolbar extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar();
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
