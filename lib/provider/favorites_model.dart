@@ -11,8 +11,8 @@ import '../model/repo.dart';
 
 class FavoritesModel with ChangeNotifier {
   final List<Repo> _list = [];
+  final List<Object> _homeList = [];
   final List<Repo> _favoList = [];
-  List<Object> _homeList = [];
   UnmodifiableListView<Repo> get repos => UnmodifiableListView(_getList());
 
   List<Object> get homeRepos{
@@ -30,10 +30,10 @@ class FavoritesModel with ChangeNotifier {
 
   List<Repo> favoRepos(List<Repo> inServer){
     var locals = repos;
-    var servers = List();
+    List<Repo> servers = List();
     servers.addAll(inServer);
-    var list = List();
-    list.addAll(locals);
+    _favoList.clear();
+    _favoList.addAll(locals);
     var willRemove = List();
     servers.forEach((item) {
       locals.forEach((i) {
@@ -46,9 +46,10 @@ class FavoritesModel with ChangeNotifier {
     willRemove.forEach((item) {
       servers.remove(item);
     });
-    list.addAll(servers);
-    return list;
+    _favoList.addAll(servers);
+    return _favoList;
   }
+  
   set repos(List<Repo> list) {
     if (list != null) {
       _list.addAll(list);

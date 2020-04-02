@@ -29,7 +29,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       appBar: _buildAppBar(),
       body: Container(
         child: Column(
-          children: <Widget>[_buildSearch(), _buildBody()],
+          children: <Widget>[_buildSearch(), Expanded(child: _buildBody())],
         ),
       ),
     );
@@ -116,9 +116,8 @@ class BuildListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var list = Provider.of<FavoritesModel>(context).favoRepos(_list);
-    
+
     return ListView.separated(
-      shrinkWrap: true,
       itemCount: list.length,
       separatorBuilder: (BuildContext context, int index) {
         return Divider(height: 2);
@@ -126,12 +125,12 @@ class BuildListView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         var item = list[index];
         var lastItem = index < 1 ? null : list[index - 1];
-        return _buildItem(context, item,lastItem);
+        return _buildItem(context, item, lastItem);
       },
     );
   }
 
-  Widget _buildItem(BuildContext context, Repo item,Repo lastItem) {
+  Widget _buildItem(BuildContext context, Repo item, Repo lastItem) {
     Widget content = InkWell(
       child: Container(
         padding: EdgeInsets.only(left: 15, right: 15),
