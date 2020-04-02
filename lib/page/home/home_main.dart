@@ -48,7 +48,11 @@ class _HomeMainState extends State<HomeMain> {
           ),
         ),
         title: Text(item.title, style: TextStyle(fontSize: 16)),
-        onTap: () {},
+        onTap: () {
+          if ("Repositories" == item.title) {
+            Navigator.of(context).pushNamed("repositories_page");
+          }
+        },
       );
     } else if (item is TitleItem) {
       return Container(

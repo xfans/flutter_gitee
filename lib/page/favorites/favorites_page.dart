@@ -133,7 +133,7 @@ class BuildListView extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.only(left: 15, top: 8, bottom: 8),
                 child: Text(
-                  item.isFavo == true ? "Selected" : "Select",
+                  item.isFavo == true ? "Selected" : "Select Repositories",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                 )),
           ),

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'page/favorites/favorites_page.dart';
 import 'page/login_page.dart';
 import 'page/main/main_main.dart';
+import 'page/repositories/repositories_page.dart';
 import 'provider/favorites_model.dart';
 import 'provider/repos_model.dart';
 import 'provider/theme_model.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
               // "home_local":(context) => HomeLocal(),
               // "home_start":(context) => HomeStart(),
               "detail": (context) => DetailPage(),
-              "favorites": (context) => FavoritesPage()
+              "favorites": (context) => FavoritesPage(),
+              "repositories_page": (context) => RepositoriesPage()
             });
       }),
     );
