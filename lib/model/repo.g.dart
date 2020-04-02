@@ -6,9 +6,10 @@ part of 'repo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Repo _$repoFromJson(Map<String, dynamic> json) {
+Repo _$RepoFromJson(Map<String, dynamic> json) {
   return Repo(
     json['id'] as int,
+    json['is_fvorites'] as bool,
     json['full_name'] as String,
     json['human_name'] as String,
     json['url'] as String,
@@ -73,8 +74,9 @@ Repo _$repoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$repoToJson(Repo instance) => <String, dynamic>{
+Map<String, dynamic> _$RepoToJson(Repo instance) => <String, dynamic>{
       'id': instance.id,
+      'is_fvorites': instance.isFavorite,
       'full_name': instance.fullName,
       'human_name': instance.humanName,
       'url': instance.url,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gitee/provider/favorites_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/repo.dart';
 import '../../service/api.dart';
@@ -113,20 +115,23 @@ class BuildListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var list = Provider.of<FavoritesModel>(context).favoRepos(_list);
+    
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: _list.length,
+      itemCount: list.length,
       separatorBuilder: (BuildContext context, int index) {
         return Divider(height: 2);
       },
       itemBuilder: (BuildContext context, int index) {
-        return _buildItem(index);
+        var item = list[index];
+        var lastItem = index < 1 ? null : list[index - 1];
+        return _buildItem(context, item,lastItem);
       },
     );
   }
 
-  Widget _buildItem(int index) {
-    var item = _list[index];
+  Widget _buildItem(BuildContext context, Repo item,Repo lastItem) {
     Widget content = InkWell(
       child: Container(
         padding: EdgeInsets.only(left: 15, right: 15),
@@ -146,15 +151,19 @@ class BuildListView extends StatelessWidget {
                 style: TextStyle(fontSize: 16)),
           ),
           Icon(
-            Icons.remove_circle_outline,
+            item.isFavo == true
+                ? Icons.remove_circle_outline
+                : Icons.add_circle_outline,
             color: Colors.grey,
           )
         ]),
       ),
-      onTap: () {},
+      onTap: () {
+        Provider.of<FavoritesModel>(context, listen: false).add(item);
+      },
     );
 
-    if (index == 0) {
+    if (lastItem == null || item.isFavorite != lastItem.isFavorite) {
       return Column(
         children: <Widget>[
           Container(
@@ -167,7 +176,7 @@ class BuildListView extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.only(left: 15, top: 8, bottom: 8),
                 child: Text(
-                  "Selected",
+                  item.isFavo == true ? "Selected" : "Select",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                 )),
           ),

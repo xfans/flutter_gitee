@@ -1,13 +1,24 @@
-import 'package:json_annotation/json_annotation.dart'; 
-  
+import 'package:json_annotation/json_annotation.dart';
+
 part 'repo.g.dart';
 
-
 @JsonSerializable()
-  class Repo extends Object {
-
+class Repo extends Object {
   @JsonKey(name: 'id')
   int id;
+
+  @JsonKey(name: 'is_fvorites')
+  bool isFavorite;
+  bool get isFavo {
+    if (isFavorite == null) {
+      return false;
+    }
+    return isFavorite;
+  }
+
+  set isFavo(bool flag) {
+    isFavorite = flag;
+  }
 
   @JsonKey(name: 'full_name')
   String fullName;
@@ -174,18 +185,74 @@ part 'repo.g.dart';
   @JsonKey(name: 'relation')
   String relation;
 
-  Repo(this.id,this.fullName,this.humanName,this.url,this.namespace,this.path,this.name,this.owner,this.description,this.private,this.public,this.internal,this.fork,this.htmlUrl,this.sshUrl,this.forksUrl,this.keysUrl,this.collaboratorsUrl,this.hooksUrl,this.branchesUrl,this.tagsUrl,this.blobsUrl,this.stargazersUrl,this.contributorsUrl,this.commitsUrl,this.commentsUrl,this.issueCommentUrl,this.issuesUrl,this.pullsUrl,this.milestonesUrl,this.notificationsUrl,this.labelsUrl,this.releasesUrl,this.recommend,this.language,this.forksCount,this.stargazersCount,this.watchersCount,this.defaultBranch,this.openIssuesCount,this.hasIssues,this.hasWiki,this.canComment,this.pullRequestsEnabled,this.hasPage,this.license,this.outsourced,this.projectCreator,this.members,this.pushedAt,this.createdAt,this.updatedAt,this.stared,this.watched,this.permission,this.relation,);
+  Repo(
+    this.id,
+    this.isFavorite,
+    this.fullName,
+    this.humanName,
+    this.url,
+    this.namespace,
+    this.path,
+    this.name,
+    this.owner,
+    this.description,
+    this.private,
+    this.public,
+    this.internal,
+    this.fork,
+    this.htmlUrl,
+    this.sshUrl,
+    this.forksUrl,
+    this.keysUrl,
+    this.collaboratorsUrl,
+    this.hooksUrl,
+    this.branchesUrl,
+    this.tagsUrl,
+    this.blobsUrl,
+    this.stargazersUrl,
+    this.contributorsUrl,
+    this.commitsUrl,
+    this.commentsUrl,
+    this.issueCommentUrl,
+    this.issuesUrl,
+    this.pullsUrl,
+    this.milestonesUrl,
+    this.notificationsUrl,
+    this.labelsUrl,
+    this.releasesUrl,
+    this.recommend,
+    this.language,
+    this.forksCount,
+    this.stargazersCount,
+    this.watchersCount,
+    this.defaultBranch,
+    this.openIssuesCount,
+    this.hasIssues,
+    this.hasWiki,
+    this.canComment,
+    this.pullRequestsEnabled,
+    this.hasPage,
+    this.license,
+    this.outsourced,
+    this.projectCreator,
+    this.members,
+    this.pushedAt,
+    this.createdAt,
+    this.updatedAt,
+    this.stared,
+    this.watched,
+    this.permission,
+    this.relation,
+  );
 
-  factory Repo.fromJson(Map<String, dynamic> srcJson) => _$repoFromJson(srcJson);
+  factory Repo.fromJson(Map<String, dynamic> srcJson) =>
+      _$RepoFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$repoToJson(this);
-
+  Map<String, dynamic> toJson() => _$RepoToJson(this);
 }
 
-  
 @JsonSerializable()
-  class Namespace extends Object {
-
+class Namespace extends Object {
   @JsonKey(name: 'id')
   int id;
 
@@ -201,18 +268,22 @@ part 'repo.g.dart';
   @JsonKey(name: 'html_url')
   String htmlUrl;
 
-  Namespace(this.id,this.type,this.name,this.path,this.htmlUrl,);
+  Namespace(
+    this.id,
+    this.type,
+    this.name,
+    this.path,
+    this.htmlUrl,
+  );
 
-  factory Namespace.fromJson(Map<String, dynamic> srcJson) => _$NamespaceFromJson(srcJson);
+  factory Namespace.fromJson(Map<String, dynamic> srcJson) =>
+      _$NamespaceFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$NamespaceToJson(this);
-
 }
 
-  
 @JsonSerializable()
-  class Owner extends Object {
-
+class Owner extends Object {
   @JsonKey(name: 'id')
   int id;
 
@@ -264,18 +335,34 @@ part 'repo.g.dart';
   @JsonKey(name: 'site_admin')
   bool siteAdmin;
 
-  Owner(this.id,this.login,this.name,this.avatarUrl,this.url,this.htmlUrl,this.followersUrl,this.followingUrl,this.gistsUrl,this.starredUrl,this.subscriptionsUrl,this.organizationsUrl,this.reposUrl,this.eventsUrl,this.receivedEventsUrl,this.type,this.siteAdmin,);
+  Owner(
+    this.id,
+    this.login,
+    this.name,
+    this.avatarUrl,
+    this.url,
+    this.htmlUrl,
+    this.followersUrl,
+    this.followingUrl,
+    this.gistsUrl,
+    this.starredUrl,
+    this.subscriptionsUrl,
+    this.organizationsUrl,
+    this.reposUrl,
+    this.eventsUrl,
+    this.receivedEventsUrl,
+    this.type,
+    this.siteAdmin,
+  );
 
-  factory Owner.fromJson(Map<String, dynamic> srcJson) => _$OwnerFromJson(srcJson);
+  factory Owner.fromJson(Map<String, dynamic> srcJson) =>
+      _$OwnerFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$OwnerToJson(this);
-
 }
 
-  
 @JsonSerializable()
-  class Permission extends Object {
-
+class Permission extends Object {
   @JsonKey(name: 'pull')
   bool pull;
 
@@ -285,12 +372,14 @@ part 'repo.g.dart';
   @JsonKey(name: 'admin')
   bool admin;
 
-  Permission(this.pull,this.push,this.admin,);
+  Permission(
+    this.pull,
+    this.push,
+    this.admin,
+  );
 
-  factory Permission.fromJson(Map<String, dynamic> srcJson) => _$PermissionFromJson(srcJson);
+  factory Permission.fromJson(Map<String, dynamic> srcJson) =>
+      _$PermissionFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$PermissionToJson(this);
-
 }
-
-  

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gitee/model/divider_item.dart';
 import 'package:flutter_gitee/model/feature.dart';
+import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/title_item.dart';
+import 'package:flutter_gitee/provider/favorites_model.dart';
+import 'package:provider/provider.dart';
 
 class HomeMain extends StatefulWidget {
   @override
@@ -14,18 +17,14 @@ class _HomeMainState extends State<HomeMain> {
   @override
   void initState() {
     _list = List();
-    _list.add(TitleItem("My Work", "", ""));
-    _list.add(Feature("images/home_issues.png", "Issues", ""));
-    _list.add(Feature("images/home_pr.png", "Pull Requests", ""));
-    _list.add(Feature("images/home_repo.png", "Repositories", ""));
-    _list.add(Feature("images/home_org.png", "Organizations", ""));
-    _list.add(DividerItem());
-    _list.add(TitleItem("Favorites", "EDIT", ""));
+    
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _list.clear();
+    _list.addAll(Provider.of<FavoritesModel>(context).homeRepos);
     return Container(
       color: Colors.white,
       child: ListView.builder(
@@ -75,6 +74,31 @@ class _HomeMainState extends State<HomeMain> {
             )
           ],
         ),
+      );
+    } else if (item is Repo) {
+      return InkWell(
+        child: Container(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          height: 50,
+          child: Row(children: <Widget>[
+            Image.network(
+              item.owner.avatarUrl,
+              fit: BoxFit.contain,
+              height: 30,
+              width: 30,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: Text(item.humanName.replaceAll("/", " / "),
+                  style: TextStyle(fontSize: 16)),
+            ),
+            
+          ]),
+        ),
+        onTap: () {
+        },
       );
     } else if (item is DividerItem) {
       return Container(
