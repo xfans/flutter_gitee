@@ -1,0 +1,170 @@
+[
+    {
+        "type": "file",
+        "size": 0,
+        "name": ".gitignore",
+        "path": ".gitignore",
+        "sha": "02a1acfe3eca09bbda5b7bbef304817f3e6acf03",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.gitignore",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/.gitignore",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/.gitignore",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.gitignore",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/.gitignore"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "LICENSE.txt",
+        "path": "LICENSE.txt",
+        "sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/LICENSE.txt",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/LICENSE.txt",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/LICENSE.txt",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/LICENSE.txt",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/LICENSE.txt"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "README.md",
+        "path": "README.md",
+        "sha": "5dc938c21c740b915313751eb83f6ee1b5951b9a",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/README.md",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/README.md",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/README.md",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/README.md",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/README.md"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "build.gradle",
+        "path": "build.gradle",
+        "sha": "0078cfdcd5a0123230f499cf5e1ecfd0f3a2a55c",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/build.gradle",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/build.gradle",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/build.gradle",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/build.gradle",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/build.gradle"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "gradle.properties",
+        "path": "gradle.properties",
+        "sha": "85be9eadecdafe27af8aea894a5ef0692593aef3",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradle.properties",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradle.properties",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/gradle.properties",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradle.properties",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradle.properties"
+        }
+    },
+    {
+        "type": "dir",
+        "size": 0,
+        "name": "gradle",
+        "path": "gradle",
+        "sha": "b2023d378ce7e54a39caa88bb75df44b5ce24620",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradle",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradle",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/gradle",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradle",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradle"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "gradlew",
+        "path": "gradlew",
+        "sha": "cccdd3d517fc5249beaefa600691cf150f2fa3e6",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradlew",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradlew",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/gradlew",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradlew",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradlew"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "gradlew.bat",
+        "path": "gradlew.bat",
+        "sha": "e95643d6a2ca62258464e83c72f5156dc941c609",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradlew.bat",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradlew.bat",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/gradlew.bat",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/gradlew.bat",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/gradlew.bat"
+        }
+    },
+    {
+        "type": "dir",
+        "size": 0,
+        "name": "pic",
+        "path": "pic",
+        "sha": "da3b447003102ada72f6c2789371fca2901dda82",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/pic",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/pic",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/pic",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/pic",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/pic"
+        }
+    },
+    {
+        "type": "dir",
+        "size": 0,
+        "name": "sample",
+        "path": "sample",
+        "sha": "92ac4be849c6441f95e50942d492b63b8c6d9a04",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/sample",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/sample",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/sample",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/sample",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/sample"
+        }
+    },
+    {
+        "type": "file",
+        "size": 0,
+        "name": "settings.gradle",
+        "path": "settings.gradle",
+        "sha": "594edd4a25bdc3ea8abac84a6ef873b3f35fc9e9",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/settings.gradle",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/settings.gradle",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/settings.gradle",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/settings.gradle",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/settings.gradle"
+        }
+    },
+    {
+        "type": "dir",
+        "size": 0,
+        "name": "voicewaveview",
+        "path": "voicewaveview",
+        "sha": "b3e646087dff2c7385965609264ffa35c024f74e",
+        "url": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/voicewaveview",
+        "html_url": "https://gitee.com/xfans/VoiceWaveView/blob/master/voicewaveview",
+        "download_url": "https://gitee.com/xfans/VoiceWaveView/raw/master/voicewaveview",
+        "_links": {
+            "self": "https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/voicewaveview",
+            "html": "https://gitee.com/xfans/VoiceWaveView/blob/master/voicewaveview"
+        }
+    }
+]

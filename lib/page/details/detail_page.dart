@@ -48,7 +48,7 @@ class _DetailPageState extends State<DetailPage> {
                 padding: EdgeInsets.only(left: 15, right: 15),
                 margin: EdgeInsets.only(top: 8, bottom: 8),
                 alignment: Alignment.centerLeft,
-                child: Text(repo.description,style: TextStyle(fontSize: 16))),
+                child: Text(repo.description, style: TextStyle(fontSize: 16))),
             Container(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 margin: EdgeInsets.only(top: 8, bottom: 8),
@@ -57,13 +57,15 @@ class _DetailPageState extends State<DetailPage> {
                     Row(
                       children: <Widget>[
                         Icon(Icons.star_border, size: 18),
-                        Text("${repo.stargazersCount} stars",style: TextStyle(fontSize: 16))
+                        Text("${repo.stargazersCount} stars",
+                            style: TextStyle(fontSize: 16))
                       ],
                     ),
                     SizedBox(width: 8),
                     Row(children: <Widget>[
                       Icon(Icons.call_merge, size: 18),
-                      Text("${repo.forksCount} forks",style: TextStyle(fontSize: 16))
+                      Text("${repo.forksCount} forks",
+                          style: TextStyle(fontSize: 16))
                     ]),
                   ],
                 )),
@@ -72,18 +74,22 @@ class _DetailPageState extends State<DetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  _buildExpandedBtn("STAR", Icons.star_border),
+                  _buildExpandedBtn(
+                      repo.stared ? "STARED" : "STAR", Icons.star_border),
                   SizedBox(width: 25),
-                  _buildExpandedBtn("WATCHING", Icons.remove_red_eye),
+                  _buildExpandedBtn(repo.watched ? "WATCHING" : "WATCH",
+                      Icons.remove_red_eye),
                 ],
               ),
             ),
             Divider(height: 2),
-            _buildItem("Issues", "${repo.openIssuesCount}"),
+            _buildItem("Issues", "${repo.openIssuesCount}", () {}),
             Divider(height: 2),
-            _buildItem("Pull Requests", "0"),
+            _buildItem("Pull Requests", "0", () {}),
             Divider(height: 2),
-            _buildItem("Browes code", ""),
+            _buildItem("Browes code", "", () {
+              Navigator.of(context).pushNamed("files_page",arguments: repo);
+            }),
             Container(
               height: 20,
               color: AppColors.lightGrey,
@@ -115,13 +121,19 @@ class _DetailPageState extends State<DetailPage> {
     ));
   }
 
-  Container _buildItem(String left, String num) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[Text(left,style: TextStyle(fontSize: 16)), Text(num)],
+  InkWell _buildItem(String left, String num, GestureTapCallback onTap) {
+    return InkWell(
+      child: Container(
+        padding: EdgeInsets.all(15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(left, style: TextStyle(fontSize: 16)),
+            Text(num)
+          ],
+        ),
       ),
+      onTap: onTap,
     );
   }
 
@@ -184,7 +196,7 @@ class _DetailPageState extends State<DetailPage> {
           SizedBox(
             width: 8,
           ),
-          Text(repo.owner.name,style: TextStyle(fontSize: 15))
+          Text(repo.owner.name, style: TextStyle(fontSize: 15))
         ],
       ),
     );

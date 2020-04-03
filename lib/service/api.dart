@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_gitee/model/files.dart';
 import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/user.dart';
@@ -66,7 +67,40 @@ class Api {
       if (response.statusCode == 200) {
         print(response.body);
         Utf8Decoder utf8decoder = Utf8Decoder();
-        return Readme.fromJson(jsonDecode(utf8decoder.convert(response.bodyBytes)));
+        return Readme.fromJson(
+            jsonDecode(utf8decoder.convert(response.bodyBytes)));
+      } else {
+        print("error ${response.statusCode}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+  //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.?access_token=cb7cbb563560befce04f7b580db9e6c6
+
+  Future<List<Files>> getRepoFils(
+      String owner, String repo, String path) async {
+    try {
+      var url = 
+          base + "/v5/repos/$owner/$repo/contents/$path?access_token=$token";
+          print(url);
+      var response = await http.get(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
+      if (response.statusCode == 200) {
+        print(response.body);
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        List list = json.decode(utf8decoder.convert(response.bodyBytes));
+        List<Files> result = [];
+        list.forEach((item) {
+          result.add(Files.fromJson(item));
+        });
+        print(result[0].toString());
+        return result;
       } else {
         print("error ${response.statusCode}");
         return null;
