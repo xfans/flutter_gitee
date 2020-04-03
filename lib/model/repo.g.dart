@@ -71,12 +71,13 @@ Repo _$RepoFromJson(Map<String, dynamic> json) {
         ? null
         : Permission.fromJson(json['permission'] as Map<String, dynamic>),
     json['relation'] as String,
-  );
+  )..isFavo = json['isFavo'] as bool;
 }
 
 Map<String, dynamic> _$RepoToJson(Repo instance) => <String, dynamic>{
       'id': instance.id,
       'is_fvorites': instance.isFavorite,
+      'isFavo': instance.isFavo,
       'full_name': instance.fullName,
       'human_name': instance.humanName,
       'url': instance.url,

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/user.dart';
 import 'package:http/http.dart' as http;
@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class Api {
   Api();
   String base = "https://gitee.com/api";
-  String token = "1cad1ad5aefe0dd249821340deab4674";
+  String token = "cb7cbb563560befce04f7b580db9e6c6";
   Future<User> getUser() async {
     try {
       var response = await http
@@ -37,13 +37,36 @@ class Api {
             'Content-Type': 'application/json; charset=UTF-8',
           });
       if (response.statusCode == 200) {
-        List list = json.decode(response.body);
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        List list = json.decode(utf8decoder.convert(response.bodyBytes));
         List<Repo> result = [];
         list.forEach((item) {
           result.add(Repo.fromJson(item));
         });
         print(result[0].toString());
         return result;
+      } else {
+        print("error ${response.statusCode}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+  Future<Readme> getReadme(String owner, String repo) async {
+    try {
+      //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/readme?access_token=cb7cbb563560befce04f7b580db9e6c6
+      var response = await http.get(
+          base + "/v5/repos/$owner/$repo/readme?access_token=$token",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
+      if (response.statusCode == 200) {
+        print(response.body);
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        return Readme.fromJson(jsonDecode(utf8decoder.convert(response.bodyBytes)));
       } else {
         print("error ${response.statusCode}");
         return null;

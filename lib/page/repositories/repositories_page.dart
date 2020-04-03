@@ -23,7 +23,7 @@ class RepositoriesPageState extends State<RepositoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: IncludeAppBar(
-        title: "Favorites",
+        title: "Repositories",
       ),
       body: _buildBody(),
     );
@@ -68,17 +68,20 @@ class BuildListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ItemRepo(
-          list[index].name,
-          list[index].owner.avatarUrl,
-          onTap: () {
-            Navigator.pushNamed(context, "detail", arguments: list[index]);
-          },
-        );
-      },
+    return Container(
+      color: Colors.white,
+      child: ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ItemRepo(
+            list[index].name,
+            list[index].owner.avatarUrl,
+            onTap: () {
+              Navigator.pushNamed(context, "detail", arguments: list[index]);
+            },
+          );
+        },
+      ),
     );
   }
 }

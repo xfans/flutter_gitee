@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gitee/page/widget/include_appbar.dart';
 import 'package:flutter_gitee/page/widget/item_repo.dart';
 import 'package:flutter_gitee/provider/favorites_model.dart';
+import 'package:flutter_gitee/style/color.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/repo.dart';
@@ -124,7 +125,7 @@ class BuildListView extends StatelessWidget {
       return Column(
         children: <Widget>[
           Container(
-            color: Color(0xffF0EFF4),
+            color: AppColors.lightGrey,
             height: 12,
           ),
           Container(
@@ -147,12 +148,3 @@ class BuildListView extends StatelessWidget {
   }
 }
 
-class MyToolbar extends StatelessWidget with PreferredSizeWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AppBar();
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-}
