@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gitee/loading.dart';
+import 'package:flutter_gitee/page/files/text_page.dart';
 import 'package:provider/provider.dart';
 import 'page/details/detail_page.dart';
 import 'page/favorites/favorites_page.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
               "favorites": (context) => FavoritesPage(),
               "repositories_page": (context) => RepositoriesPage(),
               "files_page": (context) => FilesPage(),
+              "text_page": (context) => TextPage(),
               
             });
       }),

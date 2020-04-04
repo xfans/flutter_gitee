@@ -25,10 +25,10 @@ class _FilesPageState extends State<FilesPage> {
     return Scaffold(
         appBar: IncludeAppBar(
           title: "Files",
-          rightIcon: Icons.add_circle_outline,
+          rightIcon: Icons.share,
           onRightTap: () {},
         ),
-        body: _buildBody());
+        body: WillPopScope(child: _buildBody(), onWillPop: _willPop));
   }
 
   _buildBody() {
@@ -55,6 +55,9 @@ class _FilesPageState extends State<FilesPage> {
                       setState(() {
                         path = file.path;
                       });
+                    } else {
+                      Navigator.of(context)
+                          .pushNamed("text_page", arguments: file);
                     }
                   },
                 );
@@ -66,6 +69,25 @@ class _FilesPageState extends State<FilesPage> {
           }
           return null;
         });
+  }
+
+  Future<bool> _willPop() {
+    if (path.contains("/")) {
+      setState(() {
+        print("path:" + path);
+        path = path.substring(0, path.lastIndexOf("/"));
+        print("path:" + path);
+      });
+    } else {
+      if (path != "") {
+        setState(() {
+          path = "";
+        });
+      } else {
+        Navigator.of(context).pop();
+      }
+    }
+    return Future.value(false);
   }
 }
 
@@ -80,11 +102,8 @@ class BuildListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ListView.builder(
       itemCount: list.length,
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(height: 2);
-      },
       itemBuilder: (BuildContext context, int index) {
         var item = list[index];
         return _buildItem(context, item);
@@ -95,6 +114,7 @@ class BuildListView extends StatelessWidget {
   Widget _buildItem(BuildContext context, Files item) {
     return InkWell(
       child: Container(
+        color: Colors.white,
         padding: EdgeInsets.only(left: 15, right: 15),
         height: 50,
         child: Row(children: <Widget>[

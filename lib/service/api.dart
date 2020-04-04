@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_gitee/model/files.dart';
 import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/user.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class Api {
   Api();
@@ -27,7 +29,7 @@ class Api {
       return null;
     }
   }
-  //curl -X GET --header 'Content-Type: application/json;charset=UTF-8' 'https://gitee.com/api/v5/user/repos?access_token=ac70d0529882dcd67b57adcaae8ac08b&visibility=all&sort=full_name&page=1&per_page=20'
+  //curl -X GET --header 'Content-Type: application/json;charset=UTF-8' 'https://gitee.com/api/v5/user/repos?access_token=&visibility=all&sort=full_name&page=1&per_page=20'
 
   Future<List<Repo>> getRepo() async {
     try {
@@ -58,7 +60,7 @@ class Api {
 
   Future<Readme> getReadme(String owner, String repo) async {
     try {
-      //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/readme?access_token=cb7cbb563560befce04f7b580db9e6c6
+      //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/readme?access_token=
       var response = await http.get(
           base + "/v5/repos/$owner/$repo/readme?access_token=$token",
           headers: <String, String>{
@@ -79,18 +81,17 @@ class Api {
     }
   }
 
-  //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.?access_token=cb7cbb563560befce04f7b580db9e6c6
+  //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.?access_token=
 
   Future<List<Files>> getRepoFils(
       String owner, String repo, String path) async {
     try {
-      var url = 
+      var url =
           base + "/v5/repos/$owner/$repo/contents/$path?access_token=$token";
-          print(url);
-      var response = await http.get(url,
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          });
+      print(url);
+      var response = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      });
       if (response.statusCode == 200) {
         print(response.body);
         Utf8Decoder utf8decoder = Utf8Decoder();
@@ -109,5 +110,18 @@ class Api {
       print(e.message);
       return null;
     }
+  }
+
+  Future<List<int>> download(String name, String url) async {
+    Directory tempDir = await getApplicationDocumentsDirectory();
+    String tempPath = tempDir.path;
+    var file = new File(tempPath + "/" + name);
+    if (file.existsSync()) file.deleteSync(recursive: true);
+    var ios = file.openWrite(mode: FileMode.append);
+    var response = await http.get(url);
+    var bytes = response.bodyBytes;
+    ios.add(bytes);
+    ios.close();
+    return bytes;
   }
 }
