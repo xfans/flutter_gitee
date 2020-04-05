@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class IncludeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  String title;
-  String rightText;
-  IconData rightIcon;
-  GestureTapCallback onRightTap;
+  final String title;
+  final String rightText;
+  final IconData rightIcon;
+  final GestureTapCallback onRightTap;
   Widget _rightWidget;
   IncludeAppBar(
       {this.title = "", this.rightText = "", this.rightIcon, this.onRightTap});

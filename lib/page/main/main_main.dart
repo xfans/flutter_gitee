@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gitee/page/home/home_main.dart';
-import 'package:flutter_gitee/page/home/home_repo.dart';
 import 'package:flutter_gitee/page/home/home_start.dart';
-import 'package:flutter_gitee/provider/user_model.dart';
-import 'package:flutter_gitee/service/api.dart';
-import 'package:provider/provider.dart';
-
 import 'main_navigation.dart';
 
 class MainMain extends StatefulWidget {
@@ -29,7 +24,7 @@ class _MainMainState extends State<MainMain> {
         case 1:
           _title = "Inbox";
           _actionButton = _buildNavigationIconButton();
-          _body = HomeRepo();
+          _body = HomeStart();
           break;
         case 2:
           _title = "Search";
@@ -95,11 +90,11 @@ class _MainMainState extends State<MainMain> {
         onPressed: () {});
   }
 
-  void _getUser() async {
-    var user = await Api().getUser();
-    if (user != null) {
-      UserModel userModel = Provider.of<UserModel>(context, listen: false);
-      userModel.user = user;
-    }
-  }
+  // void _getUser() async {
+  //   var user = await Api().getUser();
+  //   if (user != null) {
+  //     UserModel userModel = Provider.of<UserModel>(context, listen: false);
+  //     userModel.user = user;
+  //   }
+  // }
 }
