@@ -164,13 +164,15 @@ class _DetailPageState extends State<DetailPage> {
                     //     print(html);
                     // return Html(data: html.replaceAll("images/flutter_gitee.jpg", "https://gitee.com/xfans/flutter_gitee/raw/master/images/flutter_gitee.jpg"),showImages: true,);
                     var md = utf8.decode((base64Decode(snapshot.data.content)));
-                    print(md);
+                    // print(md);
                     // Markdown(data: null)
                     return MarkdownBody(
+                      
                       selectable: true,
                       data: md,
                       imageDirectory:
                           "https://gitee.com/xfans/flutter_gitee/raw/master/",
+                          
                     );
                   } else {
                     return Center(

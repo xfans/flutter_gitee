@@ -82,7 +82,9 @@ class _HomeMainState extends State<HomeMain> {
       );
     } else if (item is Repo) {
       return ItemRepo(
-          item.humanName.replaceAll("/", " / "), item.owner.avatarUrl);
+          item.humanName.replaceAll("/", " / "), item.owner.avatarUrl,onTap: (){
+            Navigator.pushNamed(context, "detail", arguments: item);
+          },);
     } else if (item is DividerItem) {
       return Container(
         margin: EdgeInsets.only(top: 10, bottom: 10),

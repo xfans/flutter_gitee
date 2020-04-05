@@ -17,10 +17,14 @@ class _LoadingPageState extends State<LoadingPage> {
   void initState() {
     super.initState();
     Config.init();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       UserModel userModel = Provider.of<UserModel>(context, listen: false);
       if (userModel.isLogin) {
-        Api.token = userModel.token.accessToken;
+        var token = userModel.token;
+        Api.accessToken = token.accessToken;
+        // if(DateTime.now().millisecondsSinceEpoch-token.createdAt>=token.expiresIn){
+
+        // }
         Navigator.of(context).pushReplacementNamed("main_main");
       } else {
         Navigator.of(context).pushReplacementNamed("login");

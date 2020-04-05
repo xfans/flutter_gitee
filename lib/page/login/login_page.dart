@@ -76,7 +76,7 @@ class LoginPageState extends State<LoginPage> {
     if (token != null) {
       UserModel userModel = Provider.of<UserModel>(context, listen: false);
       userModel.token = token;
-      Api.token = token.accessToken;
+      Api.accessToken = token.accessToken;
       Navigator.of(context).pushReplacementNamed("main_main");
     }
   }
