@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_gitee/config/config.dart';
+import 'package:flutter_gitee/service/api.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/user_model.dart';
@@ -17,9 +18,10 @@ class _LoadingPageState extends State<LoadingPage> {
     super.initState();
     Config.init();
     Future.delayed(Duration(seconds: 3), () {
-      UserModel userModel = Provider.of<UserModel>(context,listen: false);
+      UserModel userModel = Provider.of<UserModel>(context, listen: false);
       if (userModel.isLogin) {
-        Navigator.of(context).pushReplacementNamed("login");
+        Api.token = userModel.token.accessToken;
+        Navigator.of(context).pushReplacementNamed("main_main");
       } else {
         Navigator.of(context).pushReplacementNamed("login");
       }
@@ -28,14 +30,21 @@ class _LoadingPageState extends State<LoadingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Image.network(
-              'http://n.sinaimg.cn/sports/2_img/upload/cf0d0fdd/107/w1024h683/20181128/pKtl-hphsupx4744393.jpg')
-          // Image.asset('images/loading.jpg',fit: BoxFit.fill,)
-        ],
-      ),
+    return Scaffold(
+      body: Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                'images/logo_gitee.png',
+              ),
+              SizedBox(height:10,),
+              Text("Gitter",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+              SizedBox(height:50),
+              Text("A gitee app,powered by flutter,ui by github")
+            ],
+          )),
     );
   }
 }

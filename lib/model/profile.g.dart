@@ -11,7 +11,9 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
     ..user = json['user'] == null
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>)
-    ..token = json['token'] as String
+    ..token = json['token'] == null
+        ? null
+        : Token.fromJson(json['token'] as Map<String, dynamic>)
     ..theme = json['theme'] as String;
 }
 

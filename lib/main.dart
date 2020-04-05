@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import 'page/details/detail_page.dart';
 import 'page/favorites/favorites_page.dart';
 import 'page/files/files_page.dart';
-import 'page/login_page.dart';
+import 'page/login/login_page.dart';
+import 'page/login/login_webview_page.dart';
 import 'page/main/main_main.dart';
 import 'page/repositories/repositories_page.dart';
 import 'provider/favorites_model.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
               "repositories_page": (context) => RepositoriesPage(),
               "files_page": (context) => FilesPage(),
               "text_page": (context) => TextPage(),
+              "login_webview_page": (context) => LoginWebViewPage(),
               
             });
       }),

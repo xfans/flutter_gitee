@@ -40,7 +40,7 @@ class _FilesPageState extends State<FilesPage> {
             case ConnectionState.active:
             case ConnectionState.waiting:
               print('waiting');
-              return Center(child: Text("loading"));
+              return Center(child: CircularProgressIndicator());
             case ConnectionState.done:
               print('done');
               if (snapshot.hasError) {
