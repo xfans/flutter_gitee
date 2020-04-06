@@ -1,11 +1,9 @@
-import 'package:json_annotation/json_annotation.dart'; 
-  
+import 'package:json_annotation/json_annotation.dart';
+
 part 'user.g.dart';
 
-
 @JsonSerializable()
-  class User {
-
+class User {
   @JsonKey(name: 'id')
   int id;
 
@@ -57,6 +55,12 @@ part 'user.g.dart';
   @JsonKey(name: 'site_admin')
   bool siteAdmin;
 
+  @JsonKey(name: 'blog')
+  String blog;
+
+  @JsonKey(name: 'bio')
+  String bio;
+
   @JsonKey(name: 'public_repos')
   int publicRepos;
 
@@ -81,12 +85,38 @@ part 'user.g.dart';
   @JsonKey(name: 'updated_at')
   String updatedAt;
 
-  User(this.id,this.login,this.name,this.avatarUrl,this.url,this.htmlUrl,this.followersUrl,this.followingUrl,this.gistsUrl,this.starredUrl,this.subscriptionsUrl,this.organizationsUrl,this.reposUrl,this.eventsUrl,this.receivedEventsUrl,this.type,this.siteAdmin,this.publicRepos,this.publicGists,this.followers,this.following,this.stared,this.watched,this.createdAt,this.updatedAt,);
+  User(
+    this.id,
+    this.login,
+    this.name,
+    this.avatarUrl,
+    this.url,
+    this.htmlUrl,
+    this.followersUrl,
+    this.followingUrl,
+    this.gistsUrl,
+    this.starredUrl,
+    this.subscriptionsUrl,
+    this.organizationsUrl,
+    this.reposUrl,
+    this.eventsUrl,
+    this.receivedEventsUrl,
+    this.type,
+    this.siteAdmin,
+    this.blog,
+    this.bio,
+    this.publicRepos,
+    this.publicGists,
+    this.followers,
+    this.following,
+    this.stared,
+    this.watched,
+    this.createdAt,
+    this.updatedAt,
+  );
 
-  factory User.fromJson(Map<String, dynamic> srcJson) => _$UserFromJson(srcJson);
+  factory User.fromJson(Map<String, dynamic> srcJson) =>
+      _$UserFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
-
 }
-
-  

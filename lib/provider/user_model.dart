@@ -7,10 +7,10 @@ class UserModel extends ConfigChangeNotifier {
   Token get token => profile.token;
   bool get isLogin => token != null;
 
+
   set user(User user) {
-    if (profile.user == null || user.id != profile.user.id) {
+    if (user != null) {
       profile.user = user;
-      print("set user");
       notifyListeners();
     }
   }
@@ -18,7 +18,6 @@ class UserModel extends ConfigChangeNotifier {
   set token(Token token) {
     if (token != null) {
       profile.token = token;
-      print("set token");
       notifyListeners();
     }
   }

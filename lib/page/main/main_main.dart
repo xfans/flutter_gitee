@@ -52,11 +52,17 @@ class _MainMainState extends State<MainMain> {
       elevation: 0,
       title: Text(_title),
       leading: Container(
-          margin: const EdgeInsets.only(left: 15),
+        margin: const EdgeInsets.only(left: 15),
+        child: GestureDetector(
           child: Image.asset(
             'images/logo_gitee.png',
             fit: BoxFit.contain,
-          )),
+          ),
+          onTap: (){
+            Navigator.of(context).pushNamed("user_page");
+          },
+        ),
+      ),
       actions: <Widget>[
         _actionButton == null ? _buildHomeIconButton() : _actionButton
       ],
@@ -89,12 +95,4 @@ class _MainMainState extends State<MainMain> {
         ),
         onPressed: () {});
   }
-
-  // void _getUser() async {
-  //   var user = await Api().getUser();
-  //   if (user != null) {
-  //     UserModel userModel = Provider.of<UserModel>(context, listen: false);
-  //     userModel.user = user;
-  //   }
-  // }
 }

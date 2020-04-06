@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/page/widget/include_appbar.dart';
+import 'package:flutter_gitee/page/widget/item_info.dart';
 import 'package:flutter_gitee/service/api.dart';
 import 'package:flutter_gitee/style/color.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -83,12 +84,12 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             Divider(height: 2),
-            _buildItem("Issues", "${repo.openIssuesCount}", () {}),
+            ItemInfo("Issues", "${repo.openIssuesCount}", () {}),
             Divider(height: 2),
-            _buildItem("Pull Requests", "0", () {}),
+            ItemInfo("Pull Requests", "0", () {}),
             Divider(height: 2),
-            _buildItem("Browes code", "", () {
-              Navigator.of(context).pushNamed("files_page",arguments: repo);
+            ItemInfo("Browes code", "", () {
+              Navigator.of(context).pushNamed("files_page", arguments: repo);
             }),
             Container(
               height: 20,
@@ -121,22 +122,6 @@ class _DetailPageState extends State<DetailPage> {
     ));
   }
 
-  InkWell _buildItem(String left, String num, GestureTapCallback onTap) {
-    return InkWell(
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(left, style: TextStyle(fontSize: 16)),
-            Text(num)
-          ],
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
-
   Container _buildMdView() {
     return Container(
         padding: EdgeInsets.all(15),
@@ -167,12 +152,10 @@ class _DetailPageState extends State<DetailPage> {
                     // print(md);
                     // Markdown(data: null)
                     return MarkdownBody(
-                      
                       selectable: true,
                       data: md,
                       imageDirectory:
                           "https://gitee.com/xfans/flutter_gitee/raw/master/",
-                          
                     );
                   } else {
                     return Center(
