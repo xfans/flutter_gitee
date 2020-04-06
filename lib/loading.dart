@@ -16,18 +16,33 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
-    Config.init();
-    Future.delayed(Duration(seconds: 1), () {
+    Config.init().then((_) {
       UserModel userModel = Provider.of<UserModel>(context, listen: false);
       if (userModel.isLogin) {
         var token = userModel.token;
         Api.accessToken = token.accessToken;
-        // if(DateTime.now().millisecondsSinceEpoch-token.createdAt>=token.expiresIn){
-
-        // }
-        Navigator.of(context).pushReplacementNamed("main_main");
+        int now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+        if (now - token.createdAt >= token.expiresIn) {
+          Api().getrefreshToken(token.refreshToken).then((token) {
+            if (token != null) {
+              UserModel userModel =
+                  Provider.of<UserModel>(context, listen: false);
+              userModel.token = token;
+              Api.accessToken = token.accessToken;
+              Navigator.of(context).pushReplacementNamed("main_main");
+            }
+          }).catchError((code) {
+            Navigator.of(context).pushReplacementNamed("login");
+          });
+        } else {
+          Future.delayed(Duration(seconds: 1), () {
+            Navigator.of(context).pushReplacementNamed("main_main");
+          });
+        }
       } else {
-        Navigator.of(context).pushReplacementNamed("login");
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.of(context).pushReplacementNamed("login");
+        });
       }
     });
   }
@@ -43,9 +58,14 @@ class _LoadingPageState extends State<LoadingPage> {
               Image.asset(
                 'images/logo_gitee.png',
               ),
-              SizedBox(height:10,),
-              Text("Gitter",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-              SizedBox(height:50),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Gitter",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 50),
               Text("A gitee app,powered by flutter,ui by github")
             ],
           )),

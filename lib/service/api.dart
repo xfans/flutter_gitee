@@ -53,11 +53,11 @@ class Api {
         return Token.fromJson(jsonDecode(response.body));
       } else {
         print("error ${response.statusCode}");
-        return null;
+        return Future.error(401);
       }
     } catch (e) {
       print(e.message);
-      return null;
+      return Future.error(401);
     }
   }
 
