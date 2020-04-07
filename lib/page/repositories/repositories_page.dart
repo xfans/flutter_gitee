@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/page/widget/include_appbar.dart';
 import 'package:flutter_gitee/page/widget/item_repo.dart';
+import 'package:flutter_gitee/page/widget/load_content.dart';
 import 'package:flutter_gitee/service/api.dart';
 
 class RepositoriesPage extends StatefulWidget {
@@ -30,30 +31,10 @@ class RepositoriesPageState extends State<RepositoriesPage> {
   }
 
   _buildBody() {
-    return FutureBuilder<List<Repo>>(
+    return LoadContent<List<Repo>>(
         future: _futureList,
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              print('waiting');
-              return Center(child: Text("loading"));
-            case ConnectionState.done:
-              print('done');
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text('网络请求出错'),
-                );
-              } else if (snapshot.hasData) {
-                return BuildListView(list: snapshot.data);
-              } else {
-                return Center(
-                  child: Text('网络请求出错'),
-                );
-              }
-          }
-          return null;
+        contentBuilder: (data) {
+          return BuildListView(list: data);
         });
   }
 }

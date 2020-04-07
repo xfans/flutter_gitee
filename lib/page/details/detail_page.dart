@@ -5,6 +5,7 @@ import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/page/widget/include_appbar.dart';
 import 'package:flutter_gitee/page/widget/item_info.dart';
+import 'package:flutter_gitee/page/widget/load_content.dart';
 import 'package:flutter_gitee/service/api.dart';
 import 'package:flutter_gitee/style/color.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -125,46 +126,27 @@ class _DetailPageState extends State<DetailPage> {
   Container _buildMdView() {
     return Container(
         padding: EdgeInsets.all(15),
-        child: FutureBuilder<Readme>(
-            future: _futureReadme,
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.active:
-                case ConnectionState.waiting:
-                  print('waiting');
-                  return Center(child: Text("loading"));
-                case ConnectionState.done:
-                  print('done');
-                  if (snapshot.hasError) {
-                    return Center(
-                      child: Text('网络请求出错'),
-                    );
-                  } else if (snapshot.hasData) {
-                    // return WebView(
-                    //   initialUrl: snapshot.data.downloadUrl,
-                    // );
-                    // var html = markdownToHtml(utf8
-                    //     .decode((base64Decode(snapshot.data.content))));
-                    //     print(html);
-                    // return Html(data: html.replaceAll("images/flutter_gitee.jpg", "https://gitee.com/xfans/flutter_gitee/raw/master/images/flutter_gitee.jpg"),showImages: true,);
-                    var md = utf8.decode((base64Decode(snapshot.data.content)));
-                    // print(md);
-                    // Markdown(data: null)
-                    return MarkdownBody(
-                      selectable: true,
-                      data: md,
-                      imageDirectory:
-                          "https://gitee.com/xfans/flutter_gitee/raw/master/",
-                    );
-                  } else {
-                    return Center(
-                      child: Text('网络请求出错'),
-                    );
-                  }
-              }
-              return null;
-            }));
+        child: LoadContent<Readme>(
+          future: _futureReadme,
+          contentBuilder: (data) {
+            // return WebView(
+            //   initialUrl: snapshot.data.downloadUrl,
+            // );
+            // var html = markdownToHtml(utf8
+            //     .decode((base64Decode(snapshot.data.content))));
+            //     print(html);
+            // return Html(data: html.replaceAll("images/flutter_gitee.jpg", "https://gitee.com/xfans/flutter_gitee/raw/master/images/flutter_gitee.jpg"),showImages: true,);
+            var md = utf8.decode((base64Decode(data.content)));
+            // print(md);
+            // Markdown(data: null)
+            return MarkdownBody(
+              selectable: true,
+              data: md,
+              imageDirectory:
+                  "https://gitee.com/xfans/flutter_gitee/raw/master/",
+            );
+          },
+        ));
   }
 
   Container _buildUserInfo(Repo repo) {

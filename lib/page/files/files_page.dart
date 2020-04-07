@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gitee/model/files.dart';
 import 'package:flutter_gitee/model/repo.dart';
+import 'package:flutter_gitee/page/details/detail_page.dart';
 import 'package:flutter_gitee/page/widget/include_appbar.dart';
+import 'package:flutter_gitee/page/widget/load_content.dart';
 import 'package:flutter_gitee/service/api.dart';
 
 class FilesPage extends StatefulWidget {
@@ -32,42 +34,21 @@ class _FilesPageState extends State<FilesPage> {
   }
 
   _buildBody() {
-    return FutureBuilder<List<Files>>(
+    return LoadContent<List<Files>>(
         future: _futureFiles,
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              print('waiting');
-              return Center(child: CircularProgressIndicator());
-            case ConnectionState.done:
-              print('done');
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text('网络请求出错'),
-                );
-              } else if (snapshot.hasData) {
-                return BuildListView(
-                  list: snapshot.data,
-                  onTap: (Files file) {
-                    if (file.type == "dir") {
-                      setState(() {
-                        path = file.path;
-                      });
-                    } else {
-                      Navigator.of(context)
-                          .pushNamed("text_page", arguments: file);
-                    }
-                  },
-                );
+        contentBuilder: (data) {
+          return BuildListView(
+            list: data,
+            onTap: (Files file) {
+              if (file.type == "dir") {
+                setState(() {
+                  path = file.path;
+                });
               } else {
-                return Center(
-                  child: Text('网络请求出错'),
-                );
+                Navigator.of(context).pushNamed("text_page", arguments: file);
               }
-          }
-          return null;
+            },
+          );
         });
   }
 
