@@ -52,7 +52,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/logo_gitee.png
+    - images/logo_gitter.png
     - images/home_issues.png
     - images/home_pr.png
     - images/home_repo.png

@@ -19,17 +19,13 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          // child: Center(
-          //   child: Image.asset(
-          //     'images/logo_gitee.png',
-          //   ),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(margin: EdgeInsets.only(bottom: 45), height: 45),
               Image.asset(
-                'images/logo_gitee.png',
+                'images/logo_gitter.png',
               ),
               Container(
                 margin: EdgeInsets.only(top: 45, left: 15, right: 15),

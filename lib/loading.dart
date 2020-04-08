@@ -55,8 +55,12 @@ class _LoadingPageState extends State<LoadingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'images/logo_gitee.png',
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: Image.asset(
+                  'images/logo_gitter.png',
+                ),
               ),
               SizedBox(
                 height: 10,

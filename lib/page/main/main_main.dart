@@ -64,7 +64,7 @@ class _MainMainState extends State<MainMain> {
         margin: const EdgeInsets.only(left: 15),
         child: GestureDetector(
           child: Image.asset(
-            'images/logo_gitee.png',
+            'images/logo_gitter.png',
             fit: BoxFit.contain,
           ),
           onTap: () {

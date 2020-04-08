@@ -195,66 +195,66 @@ class _DetailPageState extends State<DetailPage> {
             var md = utf8.decode((base64Decode(data.content)));
             print(md);
             // Markdown(data: null)
-
-            var imageDirectory =
-                "https://gitee.com/${repo.fullName}/raw/master/";
-            return MarkdownBody(
-              selectable: true,
-              data: md,
-              imageBuilder: (uri) {
-                if (uri.scheme == 'http' || uri.scheme == 'https') {
-                  if (uri.toString().endsWith(".svg") ||
-                      uri.toString().endsWith(".SVG")) {
-                    return SvgPicture.network(
-                      uri.toString(),
-                      placeholderBuilder: (BuildContext context) => Container(
-                          padding: const EdgeInsets.all(30.0),
-                          child: const CircularProgressIndicator()),
-                    );
-                  } else {
-                    return CachedNetworkImage(
-                      imageUrl: uri.toString(),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    );
-                  }
-                } else if (uri.scheme == 'data') {
-                  return _handleDataSchemeUri(uri);
-                } else if (uri.scheme == "resource") {
-                  return Image.asset(
-                    uri.path,
-                  );
-                } else {
-                  Uri fileUri = imageDirectory != null
-                      ? Uri.parse(imageDirectory + uri.toString())
-                      : uri;
-                  if (fileUri.scheme == 'http' || fileUri.scheme == 'https') {
-                    if (fileUri.toString().endsWith(".svg") ||
-                        fileUri.toString().endsWith(".SVG")) {
-                      return SvgPicture.network(
-                        fileUri.toString(),
-                        placeholderBuilder: (BuildContext context) => Container(
-                            padding: const EdgeInsets.all(30.0),
-                            child: const CircularProgressIndicator()),
-                      );
-                    } else {
-                      return CachedNetworkImage(
-                        imageUrl: fileUri.toString(),
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      );
-                    }
-                  } else {
-                    return Icon(Icons.error);
-                  }
-                }
-              },
-              imageDirectory: imageDirectory,
-            );
+            return Text(md,style: TextStyle(fontSize: 16),);
+            // var imageDirectory =
+            //     "https://gitee.com/${repo.fullName}/raw/master/";
+            // return MarkdownBody(
+            //   selectable: true,
+            //   data: md,
+            //   imageBuilder: (uri) {
+            //     if (uri.scheme == 'http' || uri.scheme == 'https') {
+            //       if (uri.toString().endsWith(".svg") ||
+            //           uri.toString().endsWith(".SVG")) {
+            //         return SvgPicture.network(
+            //           uri.toString(),
+            //           placeholderBuilder: (BuildContext context) => Container(
+            //               padding: const EdgeInsets.all(30.0),
+            //               child: const CircularProgressIndicator()),
+            //         );
+            //       } else {
+            //         return CachedNetworkImage(
+            //           imageUrl: uri.toString(),
+            //           placeholder: (context, url) =>
+            //               CircularProgressIndicator(),
+            //           errorWidget: (context, url, error) =>
+            //               const Icon(Icons.error),
+            //         );
+            //       }
+            //     } else if (uri.scheme == 'data') {
+            //       return _handleDataSchemeUri(uri);
+            //     } else if (uri.scheme == "resource") {
+            //       return Image.asset(
+            //         uri.path,
+            //       );
+            //     } else {
+            //       Uri fileUri = imageDirectory != null
+            //           ? Uri.parse(imageDirectory + uri.toString())
+            //           : uri;
+            //       if (fileUri.scheme == 'http' || fileUri.scheme == 'https') {
+            //         if (fileUri.toString().endsWith(".svg") ||
+            //             fileUri.toString().endsWith(".SVG")) {
+            //           return SvgPicture.network(
+            //             fileUri.toString(),
+            //             placeholderBuilder: (BuildContext context) => Container(
+            //                 padding: const EdgeInsets.all(30.0),
+            //                 child: const CircularProgressIndicator()),
+            //           );
+            //         } else {
+            //           return CachedNetworkImage(
+            //             imageUrl: fileUri.toString(),
+            //             placeholder: (context, url) =>
+            //                 CircularProgressIndicator(),
+            //             errorWidget: (context, url, error) =>
+            //                 const Icon(Icons.error),
+            //           );
+            //         }
+            //       } else {
+            //         return Icon(Icons.error);
+            //       }
+            //     }
+            //   },
+            //   imageDirectory: imageDirectory,
+            // );
           },
         ));
   }
