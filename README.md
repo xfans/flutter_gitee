@@ -2,6 +2,11 @@
 
 flutter实现的gitee客户端,模仿github客户端ui
 
+[https://gitee.com/xfans/flutter_gitee](https://gitee.com/xfans/flutter_gitee)
+
+[https://github.com/xfans/flutter_gitee](https://github.com/xfans/flutter_gitee)
+
+# Screenshot
 ![Screenshot2](screenshots/home.jpg)![Screenshot2](screenshots/news.jpg)
 
 ![Screenshot2](screenshots/search.jpg)![Screenshot2](screenshots/details.jpg)
