@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gitee/page/home/home_main.dart';
 import 'package:flutter_gitee/page/home/home_start.dart';
+import 'package:flutter_gitee/page/search/search_page.dart';
 import 'main_navigation.dart';
 
 class MainMain extends StatefulWidget {
@@ -12,6 +13,8 @@ class MainMain extends StatefulWidget {
 class _MainMainState extends State<MainMain> {
   Widget _body;
   Widget _actionButton;
+  bool showSearch = false;
+
   var _title = "Home";
   void _handleChange(int index) {
     setState(() {
@@ -29,7 +32,7 @@ class _MainMainState extends State<MainMain> {
         case 2:
           _title = "Search";
           _actionButton = _buildSearchIconButton();
-          _body = HomeStart();
+          _body = SearchPage();
           break;
         default:
       }
@@ -50,7 +53,11 @@ class _MainMainState extends State<MainMain> {
       brightness: Brightness.light,
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text(_title),
+      title: showSearch
+          ? TextField(
+              onSubmitted: _textChange,
+            )
+          : Text(_title),
       leading: Container(
         margin: const EdgeInsets.only(left: 15),
         child: GestureDetector(
@@ -58,7 +65,7 @@ class _MainMainState extends State<MainMain> {
             'images/logo_gitee.png',
             fit: BoxFit.contain,
           ),
-          onTap: (){
+          onTap: () {
             Navigator.of(context).pushNamed("user_page");
           },
         ),
@@ -93,6 +100,18 @@ class _MainMainState extends State<MainMain> {
           Icons.search,
           color: Colors.grey,
         ),
-        onPressed: () {});
+        onPressed: () {
+          setState(() {
+            showSearch = !showSearch;
+          });
+        });
+  }
+
+  void _textChange(String value) {
+    SearchPage search = _body as SearchPage;
+    search.setText(value);
+    setState(() {
+      showSearch = !showSearch;
+    });
   }
 }

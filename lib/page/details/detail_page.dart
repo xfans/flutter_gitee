@@ -27,8 +27,9 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     repo = ModalRoute.of(context).settings.arguments;
-    _futureReadme = Api().getReadme(repo.namespace.name, repo.path);
-
+    if (_futureReadme == null) {
+      _futureReadme = Api().getReadme(repo.namespace.name, repo.path);
+    }
     return Scaffold(
       appBar: IncludeAppBar(
         rightIcon: Icons.add_circle_outline,
@@ -76,10 +77,10 @@ class _DetailPageState extends State<DetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  _buildExpandedBtn(
-                      repo.stared ? "STARED" : "STAR", Icons.star_border),
+                  _buildExpandedBtn(repo.stared == true ? "STARED" : "STAR",
+                      Icons.star_border),
                   SizedBox(width: 25),
-                  _buildExpandedBtn(repo.watched ? "WATCHING" : "WATCH",
+                  _buildExpandedBtn(repo.watched == true ? "WATCHING" : "WATCH",
                       Icons.remove_red_eye),
                 ],
               ),

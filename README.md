@@ -10,5 +10,5 @@ flutter实现的gitee客户端,模仿github客户端ui
 * 详情页面 70%
 * Browser code页面 90%
 * login页面 100%
-* 个人信息页面 0%
+* 个人信息页面 100%
 * 搜索页面 0%

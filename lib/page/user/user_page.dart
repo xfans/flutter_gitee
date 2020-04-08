@@ -84,6 +84,7 @@ class _UserPageState extends State<UserPage> {
                   Icons.link,
                   size: 15,
                 ),
+                SizedBox(width: 5),
                 Text(userModel.user.blog)
               ]),
             ),

@@ -174,4 +174,31 @@ class Api {
     ios.close();
     return bytes;
   }
+///v5/search/repositories
+  Future<List<Repo>> getSearchRepo(String key) async {
+    try {
+      var url =
+          "$base/v5/search/repositories?access_token=$accessToken&q=$key&order=desc&page=1&per_page=20";
+      var response = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      });
+      print(url);
+      if (response.statusCode == 200) {
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        List list = json.decode(utf8decoder.convert(response.bodyBytes));
+        List<Repo> result = [];
+        list.forEach((item) {
+          result.add(Repo.fromJson(item));
+        });
+        print(result[0].toString());
+        return result;
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
 }

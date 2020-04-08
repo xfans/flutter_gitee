@@ -41,11 +41,13 @@ class Config {
 
   static List<Repo> getFavorites() {
     var str = _sp.getString("favorites");
-    List list = json.decode(str);
     List<Repo> result = [];
-    list.forEach((item) {
-      result.add(Repo.fromJson(item));
-    });
+    if (str != null) {
+      List list = json.decode(str);
+      list.forEach((item) {
+        result.add(Repo.fromJson(item));
+      });
+    }
     return result;
   }
 }

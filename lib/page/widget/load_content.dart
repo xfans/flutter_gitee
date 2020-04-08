@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 
 class LoadContent<T> extends StatelessWidget {
-  const LoadContent({Key key, @required future, @required contentBuilder})
-      : _future = future,
-        builderContent = contentBuilder,
+  const LoadContent({Key key, this.future, @required this.contentBuilder})
+      : assert(contentBuilder != null),
         super(key: key);
 
-  final _future;
-  final ContentWidgetBuilder<T> builderContent;
+  final Future<T> future;
+  final ContentWidgetBuilder<T> contentBuilder;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<T>(
-        future: _future,
+        future: future,
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
+              return Center(child: Text('暂无数据'));
             case ConnectionState.active:
             case ConnectionState.waiting:
-              print('waiting');
               return Center(child: CircularProgressIndicator());
             case ConnectionState.done:
-              print('done');
               if (snapshot.hasError) {
                 return Center(
                   child: Text('网络请求出错'),
                 );
               } else if (snapshot.hasData) {
-                return builderContent(snapshot.data);
+                return contentBuilder(snapshot.data);
               } else {
                 return Center(
-                  child: Text('网络请求出错'),
+                  child: Text('暂无数据'),
                 );
               }
           }
-          return null;
+          return Center(
+            child: Text('暂无数据'),
+          );
         });
   }
 }
+
 typedef ContentWidgetBuilder<T> = Widget Function(T data);

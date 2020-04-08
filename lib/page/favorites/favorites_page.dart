@@ -46,7 +46,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return LoadContent<List<Repo>>(
         future: _futureList,
         contentBuilder: (data){
-          BuildListView(list: data);
+          return BuildListView(list: data);
           }
         );
   }
