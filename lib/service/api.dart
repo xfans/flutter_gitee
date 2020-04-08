@@ -108,11 +108,11 @@ class Api {
       return null;
     }
   }
+
 //https://gitee.com/api/v5/repos/xfans/flutter_gitee?access_token=7e4a34e78af0774696b695c0af384720
-    Future<Repo> getRepo(String fullName) async {
+  Future<Repo> getRepo(String fullName) async {
     try {
-      var url =
-          "$base/v5/repos/$fullName?access_token=$accessToken";
+      var url = "$base/v5/repos/$fullName?access_token=$accessToken";
       var response = await http.get(url, headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       });
@@ -156,11 +156,10 @@ class Api {
 
   //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.?access_token=
 
-  Future<List<Files>> getRepoFils(
-      String fullName, String path) async {
+  Future<List<Files>> getRepoFils(String fullName, String path) async {
     try {
-      var url = base +
-          "/v5/repos/$fullName/contents/$path?access_token=$accessToken";
+      var url =
+          base + "/v5/repos/$fullName/contents/$path?access_token=$accessToken";
       print(url);
       var response = await http.get(url, headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -244,6 +243,84 @@ class Api {
         });
         print(result[0].toString());
         return result;
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+//https://gitee.com/api/v5/user/starred/xfans/VoiceWaveView
+  Future<bool> start(String fullName) async {
+    try {
+      var url = "$base/v5/user/starred/$fullName";
+      var response = await http.put(url, body: <String, String>{
+        'access_token': accessToken,
+      });
+      print(url);
+      if (response.statusCode == 204) {
+        return Future.value(true);
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+//https://gitee.com/api/v5/user/starred/xfans/VoiceWaveView?access_token=7e4a34e78af0774696b695c0af384720
+  Future<bool> unStart(String fullName) async {
+    try {
+      var url = "$base/v5/user/starred/$fullName?access_token=$accessToken";
+      var response = await http.delete(url);
+      print(url);
+      if (response.statusCode == 204) {
+        return Future.value(true);
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+//https://gitee.com/api/v5/user/subscriptions/xfans/VoiceWaveView
+  Future<bool> watch(String fullName) async {
+    try {
+      var url = "$base/v5/user/subscriptions/$fullName";
+      var response = await http.put(url, body: <String, String>{
+        'access_token': accessToken,
+        'watch_type': 'watching'
+      });
+      print(url);
+      if (response.statusCode == 204) {
+        return Future.value(true);
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+//https://gitee.com/api/v5/user/subscriptions/xfans/VoiceWaveView?access_token=7e4a34e78af0774696b695c0af384720
+  Future<bool> unWatch(String fullName) async {
+    try {
+      var url =
+          "$base/v5/user/subscriptions/$fullName?access_token=$accessToken";
+      var response = await http.delete(url);
+      print(url);
+      if (response.statusCode == 204) {
+        return Future.value(true);
       } else {
         print("error ${response.body}");
         return null;

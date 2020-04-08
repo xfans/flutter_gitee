@@ -82,7 +82,7 @@ class _MainMainState extends State<MainMain> {
     return IconButton(
         icon: Icon(
           Icons.add_circle_outline,
-          color: Colors.blue,
+          color: Colors.transparent,
         ),
         onPressed: () {});
   }
@@ -91,7 +91,7 @@ class _MainMainState extends State<MainMain> {
     return IconButton(
         icon: Icon(
           Icons.filter_list,
-          color: Colors.blue,
+          color: Colors.transparent,
         ),
         onPressed: () {});
   }

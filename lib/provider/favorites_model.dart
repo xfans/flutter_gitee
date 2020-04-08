@@ -19,7 +19,7 @@ class FavoritesModel with ChangeNotifier {
     _homeList.add(Feature("images/home_issues.png", "Issues", ""));
     _homeList.add(Feature("images/home_pr.png", "Pull Requests", ""));
     _homeList.add(Feature("images/home_repo.png", "Repositories", ""));
-    _homeList.add(Feature("images/home_org.png", "Organizations", ""));
+    // _homeList.add(Feature("images/home_org.png", "Organizations", ""));
     _homeList.add(DividerItem());
     _homeList.add(TitleItem("Favorites", "EDIT", ""));
     _homeList.addAll(_getList());
