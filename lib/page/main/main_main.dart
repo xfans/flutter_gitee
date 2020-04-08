@@ -60,16 +60,24 @@ class _MainMainState extends State<MainMain> {
               onSubmitted: _textChange,
             )
           : Text(_title),
-      leading: Container(
-        margin: const EdgeInsets.only(left: 15),
-        child: GestureDetector(
-          child: Image.asset(
-            'images/logo_gitter.png',
-            fit: BoxFit.contain,
+      leading: UnconstrainedBox(
+        child: Container(
+          margin: EdgeInsets.only(left: 15),
+          child: SizedBox(
+            width: 40,
+            height: 40,
+            child: GestureDetector(
+              child: ClipOval(
+                child: Image.asset(
+                  'images/logo_gitter.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed("user_page");
+              },
+            ),
           ),
-          onTap: () {
-            Navigator.of(context).pushNamed("user_page");
-          },
         ),
       ),
       actions: <Widget>[
