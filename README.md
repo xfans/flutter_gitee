@@ -1,4 +1,4 @@
-# flutter_gitee
+# Gitter
 
 flutter实现的gitee客户端,模仿github客户端ui
 
