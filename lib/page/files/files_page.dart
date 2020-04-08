@@ -23,7 +23,7 @@ class _FilesPageState extends State<FilesPage> {
   @override
   Widget build(BuildContext context) {
     repo = ModalRoute.of(context).settings.arguments;
-    _futureFiles = Api().getRepoFils(repo.namespace.name, repo.name, path);
+    _futureFiles = Api().getRepoFils(repo.fullName, path);
     return Scaffold(
         appBar: IncludeAppBar(
           title: "Files",

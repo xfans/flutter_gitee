@@ -17,7 +17,7 @@ class RepositoriesPageState extends State<RepositoriesPage> {
   @override
   void initState() {
     super.initState();
-    _futureList = Api().getRepo();
+    _futureList = Api().getRepos();
   }
 
   @override

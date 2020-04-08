@@ -36,7 +36,7 @@ class _MainNavigationState extends State<MainNavigation> {
               color: getColor(1),
             ),
             title: Text(
-              "Notifications",
+              "News",
               style: TextStyle(color: getColor(1)),
             )),
         BottomNavigationBarItem(

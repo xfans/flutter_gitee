@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gitee/page/home/home_main.dart';
-import 'package:flutter_gitee/page/home/home_start.dart';
+import 'package:flutter_gitee/page/home/home_page.dart';
+import 'package:flutter_gitee/page/news/news_page.dart';
 import 'package:flutter_gitee/page/search/search_page.dart';
 import 'main_navigation.dart';
 
@@ -11,28 +11,27 @@ class MainMain extends StatefulWidget {
 }
 
 class _MainMainState extends State<MainMain> {
-  Widget _body;
   Widget _actionButton;
   bool showSearch = false;
-
   var _title = "Home";
+  final _bodyList = [HomePage(), NewsPage(), SearchPage()];
+  final _pageController = PageController();
+
   void _handleChange(int index) {
+    _pageController.jumpToPage(index);
     setState(() {
       switch (index) {
         case 0:
           _title = "Home";
           _actionButton = _buildHomeIconButton();
-          _body = HomeMain();
           break;
         case 1:
-          _title = "Inbox";
+          _title = "News";
           _actionButton = _buildNavigationIconButton();
-          _body = HomeStart();
           break;
         case 2:
           _title = "Search";
           _actionButton = _buildSearchIconButton();
-          _body = SearchPage();
           break;
         default:
       }
@@ -42,10 +41,13 @@ class _MainMainState extends State<MainMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: _body == null ? HomeMain() : _body,
-      bottomNavigationBar: MainNavigation(this._handleChange),
-    );
+        appBar: _buildAppBar(),
+        body: PageView(
+          controller: _pageController,
+          children: _bodyList,
+          physics: NeverScrollableScrollPhysics(), // 禁止滑动
+        ),
+        bottomNavigationBar: MainNavigation(this._handleChange));
   }
 
   AppBar _buildAppBar() {
@@ -108,7 +110,7 @@ class _MainMainState extends State<MainMain> {
   }
 
   void _textChange(String value) {
-    SearchPage search = _body as SearchPage;
+    SearchPage search = _bodyList[2];
     search.setText(value);
     setState(() {
       showSearch = !showSearch;

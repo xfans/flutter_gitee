@@ -98,7 +98,7 @@ class _UserPageState extends State<UserPage> {
                   ),
                   SizedBox(width: 5),
                   Text(
-                      "${userModel.user.followers} followers · ${userModel.user.following} following"),
+                      "${userModel.user.followers} followers ● ${userModel.user.following} following"),
                 ])),
             SizedBox(height: 15),
             Divider(height: 2),

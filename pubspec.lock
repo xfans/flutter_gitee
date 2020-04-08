@@ -174,13 +174,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_html:
-    dependency: "direct main"
-    description:
-      name: flutter_html
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.11.1"
   flutter_markdown:
     dependency: "direct main"
     description:
@@ -247,13 +240,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
-  infinite_listview:
-    dependency: "direct main"
-    description:
-      name: infinite_listview
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.1+1"
   io:
     dependency: transitive
     description:

@@ -7,12 +7,12 @@ import 'package:flutter_gitee/page/widget/item_repo.dart';
 import 'package:flutter_gitee/provider/favorites_model.dart';
 import 'package:provider/provider.dart';
 
-class HomeMain extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeMainState createState() => _HomeMainState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeMainState extends State<HomeMain> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   List<Object> _list;
 
   @override
@@ -98,4 +98,7 @@ class _HomeMainState extends State<HomeMain> {
       );
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

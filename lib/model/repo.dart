@@ -1,3 +1,4 @@
+import 'package:flutter_gitee/model/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'repo.g.dart';
@@ -244,6 +245,16 @@ class Repo extends Object {
     this.permission,
     this.relation,
   );
+
+  bool operator ==(other) {
+    if (this.id == other.id) {
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 
   factory Repo.fromJson(Map<String, dynamic> srcJson) =>
       _$RepoFromJson(srcJson);

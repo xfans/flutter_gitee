@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_gitee/model/files.dart';
+import 'package:flutter_gitee/model/news.dart';
 import 'package:flutter_gitee/model/readme.dart';
 import 'package:flutter_gitee/model/repo.dart';
 import 'package:flutter_gitee/model/token.dart';
@@ -63,10 +64,10 @@ class Api {
 
   Future<User> getUser() async {
     try {
-      var response = await http
-          .get(base + "/v5/user?access_token=$accessToken", headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      });
+      var response = await http.get(base + "/v5/user?access_token=$accessToken",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
       if (response.statusCode == 200) {
         print(response.body);
         return User.fromJson(jsonDecode(response.body));
@@ -81,7 +82,7 @@ class Api {
   }
   //curl -X GET --header 'Content-Type: application/json;charset=UTF-8' 'https://gitee.com/api/v5/user/repos?access_token=&visibility=all&sort=full_name&page=1&per_page=20'
 
-  Future<List<Repo>> getRepo() async {
+  Future<List<Repo>> getRepos() async {
     try {
       var url =
           "$base/v5/user/repos?access_token=$accessToken&visibility=all&sort=full_name&page=1&per_page=20";
@@ -107,12 +108,34 @@ class Api {
       return null;
     }
   }
+//https://gitee.com/api/v5/repos/xfans/flutter_gitee?access_token=7e4a34e78af0774696b695c0af384720
+    Future<Repo> getRepo(String fullName) async {
+    try {
+      var url =
+          "$base/v5/repos/$fullName?access_token=$accessToken";
+      var response = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      });
+      print(url);
+      if (response.statusCode == 200) {
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        return Repo.fromJson(
+            jsonDecode(utf8decoder.convert(response.bodyBytes)));
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
 
-  Future<Readme> getReadme(String owner, String repo) async {
+  Future<Readme> getReadme(String fullName) async {
     try {
       //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/readme?access_token=
       var response = await http.get(
-          base + "/v5/repos/$owner/$repo/readme?access_token=$accessToken",
+          base + "/v5/repos/$fullName/readme?access_token=$accessToken",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           });
@@ -134,10 +157,10 @@ class Api {
   //https://gitee.com/api/v5/repos/xfans/VoiceWaveView/contents/.?access_token=
 
   Future<List<Files>> getRepoFils(
-      String owner, String repo, String path) async {
+      String fullName, String path) async {
     try {
-      var url =
-          base + "/v5/repos/$owner/$repo/contents/$path?access_token=$accessToken";
+      var url = base +
+          "/v5/repos/$fullName/contents/$path?access_token=$accessToken";
       print(url);
       var response = await http.get(url, headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -174,7 +197,8 @@ class Api {
     ios.close();
     return bytes;
   }
-///v5/search/repositories
+
+  ///v5/search/repositories
   Future<List<Repo>> getSearchRepo(String key) async {
     try {
       var url =
@@ -189,6 +213,34 @@ class Api {
         List<Repo> result = [];
         list.forEach((item) {
           result.add(Repo.fromJson(item));
+        });
+        print(result[0].toString());
+        return result;
+      } else {
+        print("error ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      print(e.message);
+      return null;
+    }
+  }
+
+  //https://gitee.com/api/v5/users/xfans/received_events?access_token=7e4a34e78af0774696b695c0af384720&page=1&per_page=20
+  Future<List<News>> getNews(String name) async {
+    try {
+      var url =
+          "$base/v5/users/$name/received_events?access_token=$accessToken&page=1&per_page=20";
+      var response = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      });
+      print(url);
+      if (response.statusCode == 200) {
+        Utf8Decoder utf8decoder = Utf8Decoder();
+        List list = json.decode(utf8decoder.convert(response.bodyBytes));
+        List<News> result = [];
+        list.forEach((item) {
+          result.add(News.fromJson(item));
         });
         print(result[0].toString());
         return result;

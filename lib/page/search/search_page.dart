@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gitee/model/repo.dart';
-import 'package:flutter_gitee/page/widget/item_repo.dart';
 import 'package:flutter_gitee/page/widget/load_content.dart';
 import 'package:flutter_gitee/service/api.dart';
 
@@ -19,7 +18,7 @@ class SearchPage extends StatefulWidget {
   }
 }
 
-class SearchPageState extends State<SearchPage> {
+class SearchPageState extends State<SearchPage> with AutomaticKeepAliveClientMixin{
   var _futureList;
   var _text;
   var _oldText;
@@ -46,6 +45,9 @@ class SearchPageState extends State<SearchPage> {
           return BuildListView(list: data);
         });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class BuildListView extends StatelessWidget {

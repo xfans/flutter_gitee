@@ -19,7 +19,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   void initState() {
     super.initState();
-    _futureList = Api().getRepo();
+    _futureList = Api().getRepos();
   }
 
   @override
@@ -32,11 +32,13 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return Scaffold(
       appBar: IncludeAppBar(
         title: "Favorites",
-        rightText: "SAVE",
       ),
       body: Container(
         child: Column(
-          children: <Widget>[_buildSearch(), Expanded(child: _buildBody())],
+          children: <Widget>[
+            // _buildSearch(),
+            Expanded(child: _buildBody())
+          ],
         ),
       ),
     );
@@ -45,10 +47,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
   _buildBody() {
     return LoadContent<List<Repo>>(
         future: _futureList,
-        contentBuilder: (data){
+        contentBuilder: (data) {
           return BuildListView(list: data);
-          }
-        );
+        });
   }
 
   Container _buildSearch() {
@@ -129,4 +130,3 @@ class BuildListView extends StatelessWidget {
     }
   }
 }
-
