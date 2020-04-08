@@ -20,3 +20,4 @@ flutter实现的gitee客户端,模仿github客户端ui
 * 设置页面 0%
 * issues页面 0%
 * pr页面 0%
+* 刷新翻页等 0%
